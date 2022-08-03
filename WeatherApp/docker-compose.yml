@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: database
+    image: mysql:8.0
+    command: --default-authentication-plugin=caching_sha2_password
+    environment:
+      MYSQL_ROOT_PASSWORD: kOsFML2N2320wH
+      MYSQL_DATABASE: weatherappdb
+    ports:
+      - '4306:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      weatherapp:
+        aliases:
+          - database
+
+    
+  app:
+    build: .
+    networks:
+      - weatherapp
+    ports:
+      - 8080:80
+
+  
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    networks:
+      - weatherapp
+    depends_on:
+      - database
+    ports: 
+      - 8090:80
+    environment:
+      - PMA_ARBITRARY=1
+
+
+volumes:
+  db-data:
+networks:
+  weatherapp:

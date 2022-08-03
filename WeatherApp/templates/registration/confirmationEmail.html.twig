@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+<style>
+    * {
+            margin: 0;
+            padding: 0;
+            font-family:'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+        .container_main {
+            height: 100%;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5%;
+        }
+        a {
+        text-decoration: none;
+        }
+        h1 {
+            font-size: 30px;
+            margin: 40px 0;
+        }
+        p {
+            margin: 25px 0;
+            font-size: 18px;
+        }
+        .submitButton {
+            appearance: none;
+            background-color: #1D2A35;
+            color: white;
+            border-radius: 5px;
+            width: 20%;
+            padding: 25px 0;
+            margin: 25px 0 35px 0;
+            text-align: center;
+            min-width: 150px;
+        }
+        .submitButton:hover {
+            cursor: pointer;
+            background-color: #23323f;
+        }
+</style>
+{% endblock %}
+
+{% block body %}
+    {% set locale = app.request.getLocale() %}
+    <div class="container_main">
+        <h1>{{ 'app.confirmationEmail.header'|trans() }}</h1>
+        <p>{{ 'app.confirmationEmail.instruction'|trans() }}</p>
+        <a class='submitButton' href="{{ signedUrl }}">
+            {{ 'app.confirmationEmail.link'|trans() }}
+        </a>
+        <p>
+            {{ 'app.confirmationEmail.info'|trans() }}
+            {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}
+        </p>
+    </div>
+{% endblock %}
+

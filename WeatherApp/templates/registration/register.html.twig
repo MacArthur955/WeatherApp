@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherApp - {{ 'app.register.title'|trans() }}{% endblock %}
+{% block script %} {{ encore_entry_script_tags('form') }} {% endblock %}
+{% block style %} {{ encore_entry_link_tags('form') }} {% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="message errorMessage" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <div class="container_main">
+        <a href="{{ url('homepage') }}"><img class="closeIcon" src="images/close.png"></a>
+        {{ form_start(registrationForm) }}
+            <div class="container_form">
+                <h1>{{ 'app.register.header'|trans() }}</h1>
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_errors(registrationForm.agreeTerms) }}
+                <div>
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms) }}
+                </div>
+                <button type="submit" class="submitButton center">{{ 'app.register.submitButton'|trans() }}</button>
+            </div>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherApp{% endblock %}
+{% block style %}{{ encore_entry_link_tags('homepage') }}{% endblock %}
+
+{% block script %}
+    <script>
+        var cities = {{ cities|json_encode|raw }};
+        var userCity = {{ userCity|json_encode|raw }};
+        var locale = {{ app.request.getLocale()|json_encode|raw }};
+        var user = {{ is_granted('ROLE_USER')|json_encode|raw }};
+    </script>
+    {{ encore_entry_script_tags('homepage') }}
+{% endblock %}
+
+
+{% block body %}
+    {% set locale = app.request.getLocale() %}
+    {% set isVerified = app.user ? app.user.isVerified : null %}
+
+    {% for flash_success in app.flashes('verify_email_success') %}
+        <div class="message successMessage" role="alert">{{ flash_success }}</div>
+    {% endfor %}
+
+    {% for flash_info in app.flashes('verify_email_info') %}
+        <div class="message infoMessage" role="alert">{{ flash_info }}</div>
+    {% endfor %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="message adminMessage">{{ 'app.homepage.adminMessage'|trans() }}</div>
+    {% endif %}
+
+    <header>
+        <div class="container_header">
+            <div class="container_userCity">
+                <span class="userCity" id="{{ userCity.id }}">{{ attribute(userCity, locale) ?? userCity.name }}</span>
+                <span class="userCityTemp">{{ userCity.temp_c }} °C</span>
+                <img class="userCityIcon" src="images/{{ userCity.icon }}.png">
+            </div>
+            {% if isVerified %}
+            <div class="container_icon">
+                <img src="images/searchCity.png" width=30px height=30px class="searchCityPNG" title="Find new city">
+                <table class="searchedCities">
+                    <caption>
+                        <input type="text" class="searchCityInput">
+                    </caption>
+                    <tbody class="searchedCitiesBody"></tbody>
+                </table>
+            </div>
+            {% endif %}
+            <div class="container_icon">
+                <img src="images/city.png" width=30px height=30px class="cityPNG"  title="Change city&#013;Ctrl + Shift to delete">
+                <ul class="cities">
+                    {% for city in cities %}
+                    <li class="city" id="{{ city.id }}" {% if city == userCity %} style="background-color: #4F805D;" {% endif %} >{{ attribute(city, locale) ?? city.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="container_icon">
+                <img src="images/languages.png" width=30px height=30px class="languagesPNG">
+                <ul class="languages">
+                    <li>
+                        <a href="{{ path('homepage', {_locale: 'en'}) }}" class="locale" id="en" {% if locale == 'en' %} style="background-color: #4F805D;" {% endif %} >EN</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('homepage', {_locale: 'pl'}) }}" class="locale" id="pl" {% if locale == 'pl' %} style="background-color: #4F805D;" {% endif %} >PL</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container_icon">
+                <ul>
+                {% if app.user %}
+                    <li class="logoutText">
+                        <a href="{{ path('app_logout') }}">{{ 'app.homepage.logoutLink'|trans() }}</a>
+                    </li>
+                    <li class="logoutPNG">
+                        <a href="{{ path('app_logout') }}"><img src="images/logout.png" width=30px height=30px></a>
+                    </li>
+                {% else %}
+                    <li class="loginText">
+                        <a href="{{ path('app_login') }}">{{ 'app.homepage.loginLink'|trans() }}</a>
+                    </li>
+                    <li class="loginPNG">
+                        <a href="{{ path('app_login') }}"><img src="images/login.png" width=30px height=30px></a>
+                    </li>
+                {% endif %}
+                </ul>
+            </div>
+            <img class="menuPNG" src="images/menu.png" width=30px height=30px>
+        </div>
+    </header>
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed finibus magna. Phasellus maximus lacinia elit at consectetur. Sed placerat urna mi, at gravida ligula scelerisque id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras laoreet enim lectus, eget cursus justo finibus ut. Etiam sit amet est accumsan, sollicitudin risus vel, ultrices purus. Sed consectetur leo non arcu pretium, eu euismod ligula finibus. Donec posuere varius purus, eu accumsan leo tincidunt a. Fusce ultrices nibh eget suscipit eleifend. Curabitur lobortis sed urna ac semper. In egestas ut massa id mollis.
+
+    Quisque faucibus congue odio, et consectetur justo convallis et. Duis maximus eu dui nec vehicula. Mauris eget mauris urna. Suspendisse potenti. Sed malesuada mauris dignissim efficitur pretium. Pellentesque laoreet libero viverra arcu lobortis placerat. Duis non sollicitudin tortor.
+
+    Quisque cursus congue tellus, at tempus justo facilisis eu. Donec id nibh vel dui consequat consectetur ac at mauris. Aenean pulvinar sapien id massa maximus venenatis. Integer vitae nulla interdum, iaculis nunc ornare, consectetur elit. Pellentesque tincidunt magna in posuere pharetra. Cras aliquam, lacus ac elementum finibus, ex justo sollicitudin nisl, a egestas tellus nunc in quam. Praesent tempus massa id congue dignissim.
+
+    Morbi ac dolor a ante cursus vestibulum eu ultrices odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla gravida consequat justo non porta. In et ipsum vel lorem tempus ultricies. Quisque nec est est. Nam sapien neque, ullamcorper vitae tempor sed, volutpat at dui. Duis in molestie felis. Nulla placerat varius pharetra. Vivamus vitae magna vitae quam interdum vestibulum quis ac dolor. Donec et nisl a neque posuere tempus id eu ipsum. Morbi nec venenatis justo, sed sodales elit. Cras ante nulla, maximus eu pharetra nec, fringilla ut nulla. Duis pulvinar, augue at efficitur ultricies, neque leo vestibulum quam, sit amet euismod augue mi vitae tellus.
+
+    Duis ac odio ornare, congue mi eu, interdum diam. Vestibulum purus dolor, commodo vitae nisl a, cursus blandit lacus. Proin mollis finibus pretium. Vestibulum eu sapien dictum lectus ullamcorper ornare non in ex. Nam vestibulum lorem vel sem aliquet vestibulum. Nam feugiat lacus ut egestas vulputate. Maecenas ut iaculis ante. Morbi quis condimentum mauris, luctus rhoncus neque. Nam eget diam feugiat, mattis lectus sed, scelerisque quam. Sed sed diam non mauris vestibulum accumsan vel a arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse feugiat augue pharetra dui congue, sed porttitor lorem iaculis. Sed purus justo, blandit ut massa et, tincidunt ullamcorper massa. Cras dignissim dui eu enim tincidunt, at dignissim nibh viverra. Vestibulum dictum, nunc id molestie vehicula, ante ipsum dictum urna, sed laoreet ligula risus ut magna. In varius enim est, in blandit ex iaculis in. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in erat egestas, tempus nunc ut, aliquet diam. Morbi tempor urna ligula, a dapibus turpis ornare non. In hac habitasse platea dictumst. Suspendisse potenti. Phasellus sed sodales ante. In gravida vestibulum mi, sit amet feugiat tortor scelerisque id. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris ut gravida sem. Fusce quis sapien arcu. Phasellus consequat ullamcorper gravida. Curabitur tincidunt eleifend porta. Praesent non mi diam. Sed varius ornare consequat. Integer ut erat et magna malesuada ultricies non ac nisl. Praesent mattis enim sit amet dui imperdiet feugiat. Maecenas in aliquet tortor.
+
+    Aliquam id purus dignissim, venenatis tellus sit amet, lacinia ante. Suspendisse euismod purus sapien, sed dapibus lacus pulvinar vitae. Vivamus sit amet nibh ac metus aliquet vulputate. Quisque dignissim neque erat, et imperdiet leo pulvinar ac. Praesent ornare varius molestie. Praesent tempus leo mi, at luctus magna venenatis ut. In hac habitasse platea dictumst. Proin lobortis euismod est, id aliquet nisl auctor eu. Aliquam erat volutpat. Nunc ac sodales nulla, et mattis tellus. Maecenas justo sem, scelerisque ut rutrum vitae, fringilla vel nunc. Phasellus quis nulla nulla. Suspendisse sed lorem non magna tincidunt dictum.
+
+    Nullam id commodo felis. Vivamus pharetra id risus fringilla laoreet. Nullam elementum enim ex, eget lobortis lorem porttitor non. Nulla hendrerit sodales libero et convallis. Nunc vehicula condimentum leo sit amet rutrum. Praesent eget massa sit amet nulla porta sollicitudin. Aenean in nulla purus. Pellentesque vel dui nec tellus imperdiet blandit ut a nunc. Integer a venenatis sapien. Nulla blandit libero vitae lacus dictum, id congue magna maximus.
+
+    Nunc et massa enim. Nunc congue volutpat tortor ac ultrices. Nam ac nunc varius, fringilla odio id, consequat tellus. Suspendisse semper ex vitae arcu euismod lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur libero a ipsum rutrum, ut ultricies mauris fringilla. Donec venenatis ac ipsum facilisis rutrum. Duis vel blandit sem. Morbi tincidunt sit amet ligula vitae dapibus. Vestibulum nec ornare elit, vitae aliquam leo. Nunc dignissim, eros ut rhoncus commodo, orci neque tristique sapien, ut vehicula ligula dui ac arcu.
+
+    Praesent a ullamcorper risus. Vivamus auctor ligula urna, sit amet iaculis neque ultrices eget. Donec pellentesque quis lacus sed pellentesque. Etiam enim leo, convallis nec sem vitae, semper hendrerit elit. Curabitur cursus sapien ante, in rutrum velit suscipit et. Mauris dignissim, orci eget tristique pellentesque, tellus turpis finibus velit, quis dignissim dolor ligula quis erat. Proin eu ipsum a mauris venenatis iaculis. Suspendisse sit amet velit lacinia nisi fringilla euismod id eget erat. Etiam lacinia dui ac ligula cursus mollis. Cras porta nisi in lacus lacinia semper. Nullam ut ligula lobortis, venenatis nisl id, finibus orci. Aenean lectus purus, fermentum tincidunt lectus eget, elementum ultrices ipsum. Donec ut urna aliquam, facilisis metus vitae, sagittis velit. In pretium, dolor in fringilla consequat, quam lorem venenatis magna, in porttitor metus nibh vitae tellus. Nullam ac venenatis massa. Etiam felis massa, ultricies sit amet scelerisque quis, congue ut elit.
+    </div>
+{% endblock %} 

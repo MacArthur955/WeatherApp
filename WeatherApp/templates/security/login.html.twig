@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherApp - {{ 'app.login.title'|trans() }}{% endblock %}
+{% block script %} {{ encore_entry_script_tags('form') }} {% endblock %}
+{% block style %} {{ encore_entry_link_tags('form') }} {% endblock %}
+
+{% block body %}
+
+    {% for flash_error in app.flashes('reset_password_success') %}
+        <div class="message successMessage" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    
+    {% if error %}
+    <div class="message errorMessage">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="container_main">
+        <a href="{{ url('homepage') }}"><img class="closeIcon" src="images/close.png"></a>
+        <form method="post" class="form">
+            <div class="container_form">
+                <h1>{{ 'app.login.header'|trans() }}</h1>
+                <div class="container_overInput">
+                    <span class="">{{ 'form.label.username'|trans() }}</span>
+                    <span class="small">
+                        {{ 'app.login.registerLinkQuestion'|trans() }}
+                        <a href="{{ url('app_register') }}" class="small smallLink">{{ 'app.login.registerLink'|trans() }}</a>
+                    </span>
+                </div>
+                <input class="textInput" type="text" value="{{ last_username }}" name="username" id="inputUsername" autocomplete="username" autofocus><br>
+                <span>{{ 'form.label.password'|trans() }}</span>
+                <input class="textInput" type="password" name="password" id="inputPassword" autocomplete="current-password">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"><br>
+                <div>
+                    <input class="checkboxInput" name="_remember_me" type="checkbox">
+                    {{ 'form.label.rememberMe'|trans() }}
+                </div>
+                <button class="submitButton center" type="submit">{{ 'app.login.submitButton'|trans() }}</button>
+                <a class="center mediumLink" href="{{ url('app_forgot_password_request') }}">{{ 'app.login.forgotPasswordLink'|trans() }}</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

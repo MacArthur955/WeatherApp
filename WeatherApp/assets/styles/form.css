@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+/*------------------------------------------------------       elements       ------------------------------------------------------*/
+a {
+    text-decoration: none;
+}
+h1 {
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+input {
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+}
+li {
+    list-style: none;
+    border: 1px solid #B0413E;
+    background-color: #ffa9a3;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+p {
+    margin: 25px 0;
+    font-size: 18px;
+}
+
+/*-----------------------------------------------------       containers       -----------------------------------------------------*/
+.container_main {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.container_overInput {
+    display: flex;
+    justify-content:space-between;
+}
+.container_form {
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    width:400px;
+    border-radius: 20px;
+    padding: 50px;
+    border: 1px solid gainsboro;
+    color: #0D1721;
+}
+
+/*---------------------------------------------------       form elements       ----------------------------------------------------*/
+
+/*--------------------       inputs       --------------------*/
+.textInput {
+    width:100%;
+    margin: 5px 0 15px 0;
+    font-size: 18px;
+}
+.textInput:focus {
+    outline: 2px solid #1D2A35;
+}
+.checkboxInput {
+    appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 15px;
+}
+.checkboxInput:checked {
+    box-shadow: inset 0 0 0 2px white;
+    background-color: #4F805D;
+}
+
+/*-------------------       buttons       --------------------*/
+.submitButton {
+    appearance: none;
+    background-color: #1D2A35;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+    height: 50px;
+    margin: 25px 0 35px 0;
+}
+.submitButton:hover {
+    cursor: pointer;
+    background-color: #23323f;
+}
+
+/*-----------------------------------------------------       parameters       -----------------------------------------------------*/
+.small {
+    font-size: 15px;
+}
+.center {
+    align-self: center;
+}
+
+/*-------------------------------------------------------       links       --------------------------------------------------------*/
+.smallLink {
+    color:#4F805D;
+    font-weight: 900;
+}
+.smallLink:hover {
+    color:#65a577;
+}
+.mediumLink {
+    color:#0D1721;
+}
+.mediumLink:hover {
+    color:#4F805D;
+}
+
+/*------------------------------------------------------       messages       ------------------------------------------------------*/
+.message {
+    text-align: center;
+    padding: 5px 0;
+}
+.successMessage {
+    color:ivory;
+    background-color: #4F805D;
+}
+.errorMessage {
+    background-color: #ffa9a3;
+}
+
+/*-------------------------------------------------------       icons       --------------------------------------------------------*/
+.closeIcon {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .container_form {
+        border: none;
+        width: 95%;
+        padding: 0;
+    }
+    form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .container_form {
+        height: 90vh;
+    }
+}

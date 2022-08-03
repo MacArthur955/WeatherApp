@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+/*------------------------------------------------------       elements       ------------------------------------------------------*/
+header {
+    position: sticky;
+    top: 0;
+    font-size: 18px;
+    color:#FFFFFF;
+    background-color: #1D2A35;
+    padding: 3px 50px;
+    user-select: none;
+}
+header ul {
+    list-style: none;
+    padding: 4px, 6px;
+}
+header ul li:hover, header ul li:hover a , header table tr:hover {
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+}
+a {
+    text-decoration: none;
+    color:#FFFFFF;
+}
+
+/*-----------------------------------------------------       containers       -----------------------------------------------------*/
+.container_userCity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container_userCity span {
+    margin-right: 15px;
+}
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container_icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*--------------------------------------------------       header elements       ---------------------------------------------------*/
+
+/*--------------------       cities       --------------------*/
+.cityPNG, .languagesPNG, .searchCityPNG {
+    cursor: pointer;
+    position: relative;
+}
+.cities, .languages, .searchedCities {
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    display: none;
+    background-color: #0D1721;
+    top: 35px;
+    width:max-content;
+}
+
+/*-------------------       language       -------------------*/
+.locale {
+    cursor: pointer;
+}
+
+/*-----------------       registration       -----------------*/
+.logoutPNG, .loginPNG, .menuPNG {
+    display: none;
+    cursor: pointer;
+}
+
+/*------------------------------------------------------       messages       ------------------------------------------------------*/
+.message {
+    text-align: center;
+    padding: 5px 0;
+}
+.successMessage {
+    color:ivory;
+    background-color: #4F805D;
+}
+.infoMessage {
+    background-color: #FFF4A3;
+}
+.adminMessage {
+    background-color: #a3e5ff;
+}
+
+/*----------------------------------------------------       page content       ----------------------------------------------------*/
+.content {
+    box-shadow: 0 0 5px black;
+    background-color: gainsboro;
+    margin: 50px 25px;
+    padding: 15px;
+}
+
+@media screen and (max-width: 800px) {
+    .logoutPNG, .loginPNG {
+        display: inline;
+    }
+    .loginText, .logoutText {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .menuPNG {
+        display: inline;
+    }
+    .container_icon {
+        display: none;
+    }
+    header {
+        padding: 3px 6%;
+    }
+}

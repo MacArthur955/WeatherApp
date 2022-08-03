@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherApp - {{ 'app.checkEmail.title'|trans() }}{% endblock %}
+{% block script %} {{ encore_entry_script_tags('form') }} {% endblock %}
+{% block style %} {{ encore_entry_link_tags('form') }} {% endblock %}
+
+{% block body %}
+    <div class="container_main">
+        <a href="{{ url('homepage') }}"><img class="closeIcon" src="{{ asset('images/close.png') }}"></a>
+        <div class="container_form">
+            <h1>{{ 'app.checkEmail.header'|trans() }}</h1>
+            <p>
+                {{ 'app.checkEmail.info'|trans() }}
+                {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+            </p>
+            <p>
+                {{ 'app.checkEmail.instruction'|trans() }}
+                <a class='smallLink' href="{{ path('app_forgot_password_request') }}">
+                    {{ 'app.checkEmail.link'|trans() }}
+                </a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

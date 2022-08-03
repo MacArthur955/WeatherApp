@@ -1,0 +1,52 @@
+form:
+  label:
+    newPassword: Nowe hasło
+    repeatPassword: Powtórz hasło
+    agreeTerms: ' Akceptuję warunki'
+    password: Hasło
+    username: Nazwa użytkownika
+    rememberMe: ' Zapamiętaj mnie'
+
+app:
+  reset:
+    header: Zresetuj swoje hasło
+    submitButton: Zresetuj hasło
+    title: Resetuj hasło
+  checkEmail:
+    header: Zrobione
+    info: Jeśli istnieje konto z podanym adresem, właśnie wysłaliśmy wiadomość e-mail zawierającą link, za pomocą którego można zresetować hasło. Ten link wygaśnie w przeciągu 
+    instruction: Jeśli nie otrzymasz e-maila, sprawdź folder ze spamem lub 
+    link: Spróbuj ponownie
+    title: Resetuj hasło
+  request:
+    header: Zresetuj swoje hasło
+    instruction: Wpisz swój adres e-mail, a wyślemy Ci link do zresetowania hasła
+    submitButton: Zresetuj hasło
+    title: Resetuj hasło
+  email:
+    header: Cześć! Teraz możesz zmienić swoje hasło
+    info: Ten link wygaśnie w przeciągu 
+    instruction: 'Aby zresetować swoje hasło, kliknij proszę w podany link:'
+    link: Zmień hasło
+  confirmationEmail:
+    header: Cześć! Proszę potwierdź swój email
+    info: Ten link wygaśnie w 
+    instruction: 'Proszę potwierdź swój email klikając w poniższy link:'
+    link: Potwierdź email
+  register:
+    header: Zarejestruj
+    submitButton: Zarejestruj
+    title: Zarejestruj
+  login:
+    header: Zaloguj się
+    registerLink: Dołącz
+    registerLinkQuestion: Nie masz konta? 
+    submitButton: Zaloguj
+    forgotPasswordLink: Zapomniałeś hasła?
+    title: Zaloguj
+  homepage:
+    adminMessage: Jesteś administratorem. Twoje miasta będą dostępne dla niezarejestrowanych użytkowników
+    loginLink: Zaloguj
+    registerLink: Zarejestruj
+    logoutLink: Wyloguj
+    

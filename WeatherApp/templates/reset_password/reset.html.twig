@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherApp - {{ 'app.reset.title'|trans() }}{% endblock %}
+{% block script %} {{ encore_entry_script_tags('form') }} {% endblock %}
+{% block style %} {{ encore_entry_link_tags('form') }} {% endblock %}
+
+{% block body %}
+    <div class="container_main">
+        <a href="{{ url('homepage') }}"><img class="closeIcon" src="{{ asset('images/close.png') }}"></a>
+        {{ form_start(resetForm) }}
+            <div class="container_form">
+                <h1>{{ 'app.reset.header'|trans() }}</h1>
+                {{ form_row(resetForm.plainPassword) }}
+                <button class="center submitButton">{{ 'app.reset.submitButton'|trans() }}</button>
+            </div>
+        {{ form_end(resetForm) }}
+    </div>
+{% endblock %}

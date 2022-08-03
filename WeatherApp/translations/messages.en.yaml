@@ -1,0 +1,51 @@
+form:
+  label:
+    newPassword: New password
+    repeatPassword: Repeat password
+    agreeTerms: ' Agree Terms'
+    password: Password
+    username: Username
+    rememberMe: ' Remember me'
+
+app:
+  reset:
+    header: Reset your password
+    submitButton: Reset password
+    title: Reset password
+  checkEmail:
+    header: Done
+    info: If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password. This link will expire in 
+    instruction: If you don't receive an email please check your spam folder or 
+    link: Try again
+    title: Reset password
+  request:
+    header: Reset your password
+    instruction: Enter your email address and we will send you a link to reset your password
+    submitButton: Reset password
+    title: Reset password
+  email:
+    header: Hi! Now you can change your password
+    info: This link will expire in 
+    instruction: 'To reset your password, please click the following link:'
+    link: Change password
+  confirmationEmail:
+    header: Hi! Please confirm your email
+    info: This link will expire in 
+    instruction: 'Please confirm your email address by clicking the following link:'
+    link: Confirm Email
+  register:
+    header: Register
+    submitButton: Register
+    title: Register
+  login:
+    header: Log in
+    registerLink: Sign In
+    registerLinkQuestion: Need an account? 
+    submitButton: Sign in
+    forgotPasswordLink: Forgot passwort?
+    title: Login
+  homepage:
+    adminMessage: You are admin. Yours cities will be available for not registered users
+    loginLink: Login
+    registerLink: Register
+    logoutLink: Logout

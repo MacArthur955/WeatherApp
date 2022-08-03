@@ -1,0 +1,13 @@
+user.username.uniqueEntity: Podana nazwa użytkownika jest już zajęta
+
+user.email.uniqueEntity: Istnieje już konto z tym adresem e-mail
+user.email.valid: To nie jest prawidłowy adres e-mail
+
+user.password.min: Twoje hasło powinno mieć co najmniej 6 znaków
+
+user.acceptTerms: Wymagane jest zaakceptowanie warunków
+user.notBlank: To pole nie może być puste
+
+user.invalid_message: Wpisane hasła w polach muszą być takie same
+
+user.agreeTerms: 'Akceptuję warunki'

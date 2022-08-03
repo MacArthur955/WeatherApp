@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherApp - {{ 'app.request.title'|trans() }}{% endblock %}
+{% block script %} {{ encore_entry_script_tags('form') }} {% endblock %}
+{% block style %} {{ encore_entry_link_tags('form') }} {% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="message errorMessage" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <div class="container_main">
+        <a href="{{ url('homepage') }}"><img class="closeIcon" src="images/close.png"></a>
+        {{ form_start(requestForm) }}
+            <div class="container_form">
+                <h1>{{ 'app.request.header'|trans() }}</h1>
+                {{ form_row(requestForm.email) }}
+                <p>{{ 'app.request.instruction'|trans() }}</p>
+                <button class="center submitButton">{{ 'app.request.submitButton'|trans() }}</button>
+            <div>
+        {{ form_end(requestForm) }}
+    <div>
+{% endblock %}
